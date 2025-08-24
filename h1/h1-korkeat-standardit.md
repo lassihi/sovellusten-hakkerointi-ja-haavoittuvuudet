@@ -1,4 +1,4 @@
-# Harjoitus 0: Korkeat standardit
+# Harjoitus 1: Korkeat standardit
 Kurssi: Sovellusten hakkerointi ja haavoittuvuudet https://terokarvinen.com/sovellusten-hakkerointi/ \
 Tehtävänanto: https://terokarvinen.com/sovellusten-hakkerointi/#h1-korkeat-standardit-lari
 
