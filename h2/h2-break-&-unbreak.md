@@ -185,6 +185,8 @@ Tuloksissa olevasta wp-admin sivusta löytyi tehtävän lippu.
 
 ## d) Murtaudu 020-your-eyes-only. Ks. Karvinen 2024: Hack'n Fix
 
+Tehtävän tarkoituksena on löytää administrative
+
 Tehtävää varten asensin pip:n ja virtualenv:n.
 
 	sudo apt-get install pip virtualenv
@@ -207,9 +209,32 @@ Selasin tehtävän sivulle.
 
 <img width="1010" height="499" alt="image" src="https://github.com/user-attachments/assets/068de8e6-8197-4cb8-bd43-9c26bbb2308e" />
 
-Tehtävän tarkoituksena on löytää hallintapaneeli. Sovellusta aluksi tutkiessani päädyin 404-sivulle, jossa debug tila oli jäänyt päälle. Tämä paljasti todennäköisen hallintapaneelihakemiston `admin-console/`.
+Tehtävän tarkoituksena on löytää hallintakonsoli (administrative console), joka sisätää tekstin "you've found the secret page". 
+
+Heti tehtävän alussa päädyin 404-sivulle, jossa debug tila oli jäänyt päälle. Tämä paljasti todennäköisen hallintapaneelin sijainnin `admin-console/`, sekä muuta mielenkiintoista, kuten missä järjestyksessä Django yritti hakemistoja etsiä. 
 
 <img width="1009" height="376" alt="image" src="https://github.com/user-attachments/assets/0a00790e-e2f0-4e47-8903-eacab6c86663" />
 
+404-sivulla oleviin muihin hakemistoihin pääsi kotisivun nappeja klikkailemalla. Kun yritin siirtyä admin-console/ hakemistoon (`127.0.0.1:8000/admin-console/`), sovellus uudelleenohjasi sisäänkirjautumiseen. Sama tapahtui "Admin dashboard" nappia painettaessa, joten jonkinlainen pääsynhallinta sovelluksessa oli.
+
+<img width="1013" height="679" alt="image" src="https://github.com/user-attachments/assets/29f86374-1e8f-478d-9cca-9b0812af9850" />
+
+Päätin vielä tutkia ffufin avulla, jos löytyisi muita hakemistoja, mutta ainoa common.txt sanalistalta löytyvä oli jo aiemmin huomaamani admin-console/.
+
+<img width="988" height="321" alt="image" src="https://github.com/user-attachments/assets/a67473e9-2ae1-4bbb-91a4-7ec6c7d28c56" />
+
+<img width="994" height="799" alt="image" src="https://github.com/user-attachments/assets/bb26e814-def2-4bc5-ba61-686480fbcaf0" />
+
+Jatkoin tämän jälkeen kokeilemalla muita sovelluksen ominaisuuksia ja rekisteröin uuden käyttäjän, jolla myös kirjauduin sisään. Sisäänkirjautuneena klikattuani "Admin dashboard" nappia, sain 403 Forbidden -vastauksen. Vastaus poikkesi uudelleenohjauksesta, joka tapahtui uloskirjautuneena.
+
+<img width="797" height="127" alt="image" src="https://github.com/user-attachments/assets/7d40e939-889c-4441-a8c1-18308dec29da" />
+
+Kun sisäänkirjautuneena siirryin admin-console/ hakemistoon sovellus päästi suoraan sisään ja täten sain tehtävän ratkaistua.
+
+<img width="1010" height="385" alt="image" src="https://github.com/user-attachments/assets/be5386f0-aefc-4aa2-b55e-0c64dc6c2860" />
+
+Haavoittuvuus näyttäisi liittyvän rikkinäiseen pääsynhallintaan, joka ei tarkista sisäänkirjautuneen käyttäjän oikeutta "salaiseen" hallintapaneeliin.
 
 ## e) Korjaa 020-your-eyes-only haavoittuvuus. Osoita testillä, että ratkaisusi toimii.
+
+
