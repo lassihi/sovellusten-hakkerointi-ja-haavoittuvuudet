@@ -138,9 +138,51 @@ Salasanat saa veilä esille, jos tietää oikean pin-koodin.
 
 <img width="755" height="558" alt="image" src="https://github.com/user-attachments/assets/2d81dd5c-ff56-4597-8e32-8851482a7358" />
 
-
-
 ## c) Ratkaise dirfuzt-1 artikkelista Karvinen 2023: Find Hidden Web Directories - Fuzz URLs with ffuf. Tämä auttaa 020-your-eyes-only ratkaisemisessa.
+
+Asensin ffuf:n ja seclists github repositoryn, josta löytyy suosituimmat sanalistat.
+
+		sudo apt-get install ffuf
+  		git clone --depth 1 https://github.com/danielmiessler/SecLists.git
+
+Sekä harjoituksen dirfuzt-1.
+
+		wget https://terokarvinen.com/2023/fuzz-urls-find-hidden-directories/dirfuzt-1
+Annoin itselleni ajo-oikeudet harjoitukseen ja käynnistin sen.
+
+<img width="416" height="132" alt="image" src="https://github.com/user-attachments/assets/f094f7fb-15a7-4de1-8d36-f3ecfb73f431" />
+
+Siirryin selaimella harjoitussivulle tarkistaakseni, että se toimii.
+
+<img width="793" height="147" alt="image" src="https://github.com/user-attachments/assets/5334a596-3b37-49ed-8269-725c66429372" />
+
+Näyttää toimivan, joten aloin työstämään hakemistoja ffufilla. Otin ensiksi testiin sanalistan [common.txt
+](https://github.com/danielmiessler/SecLists/blob/master/Discovery/Web-Content/common.txt)
+
+<img width="921" height="532" alt="image" src="https://github.com/user-attachments/assets/c2d65fd1-e26d-43b5-a2dd-f4993dd4ed4d" />
+
+Pyynnöt rajoitettiin jostain syystä lähes välittömästi vain noin muutamaan sekunnissa. Ffufista en löytänyt tähän ratkaisua, joten syynä oli mahdollisesti sovelluksen rate limit. Avasin taas selaimella sovelluksen, tein testihaun "127.0.0.2:8000/testi" ja kopioin haun pyynnön selaimen kehittäjätyökalujen Network-välilehdeltä curl syntaksissa. 
+
+<img width="1007" height="822" alt="image" src="https://github.com/user-attachments/assets/ef5f3c50-1561-4d2a-b4b1-5460e4a331fb" />
+
+Ffuf komennon rakenne on hyvin lähellä curlia, joten pienillä muokkauksilla sain selainta imitoivan ffuf komennon luotua.
+
+<img width="1915" height="109" alt="image" src="https://github.com/user-attachments/assets/0105c409-37d6-438c-94e1-c8f799617b06" />
+
+Tällä kertaa ffuf sai kierrettyä rajoitukset.
+
+<img width="824" height="766" alt="image" src="https://github.com/user-attachments/assets/3fa16a05-4b94-49a1-a4e5-619ce29158ee" />
+
+Komento kuitenkin tuotti niin paljon rivejä, että filtteröin pois tulokset, joiden koko oli 154 tavua, `-fs 154`.
+
+Ajoin uuden komennon.
+
+<img width="1920" height="930" alt="image" src="https://github.com/user-attachments/assets/ef118218-f46b-4d9a-9d02-c5dc3e56f06a" />
+
+Tuloksissa olevasta wp-admin sivusta löytyi tehtävän lippu.
+
+<img width="999" height="230" alt="image" src="https://github.com/user-attachments/assets/7dbad097-2964-478a-8e3c-fc957c241cf3" />
+
 
 ## d) Murtaudu 020-your-eyes-only. Ks. Karvinen 2024: Hack'n Fix
 
