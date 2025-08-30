@@ -237,4 +237,42 @@ Haavoittuvuus näyttäisi liittyvän rikkinäiseen pääsynhallintaan, joka ei t
 
 ## e) Korjaa 020-your-eyes-only haavoittuvuus. Osoita testillä, että ratkaisusi toimii.
 
+Django oli itselleni täysin tuntematon entuudestaan, joten jouduin tekemään hieman tutkiskelua.
 
+Löysin hallintakonsolin html-sivun tutkimalla lähdekoodia, sijainnista 020-your-eyes-only/logtin/hats/templates/hats/show-all.html.
+
+<img width="1037" height="233" alt="image" src="https://github.com/user-attachments/assets/0fc86924-dc21-480f-b61c-16e508cfdeb9" />
+
+Etsin tämän jälkeen lähdekoodista tiedostoja, joissa mainitaan kyseinen tiedosto.
+
+<img width="952" height="97" alt="image" src="https://github.com/user-attachments/assets/05f689a2-6f03-4511-876c-77d4fe03679c" />
+
+<img width="952" height="445" alt="image" src="https://github.com/user-attachments/assets/a8207998-79b3-4362-a75e-80f7f2ea9a94" />
+
+Tiedosto logtin/hats/views.py nopealla vilkaisulla näyttäisi siltä, että se saattaisi käsitellä pääsynhallintaa. Tutkin missä muualla luokka AdminDashboardView mainitaan.
+
+<img width="952" height="105" alt="image" src="https://github.com/user-attachments/assets/ded361cd-6877-4f10-b963-4df5bd48fcd7" />
+
+<img width="952" height="236" alt="image" src="https://github.com/user-attachments/assets/c1d3e66c-4d75-4f20-a88f-80d5934711cd" />
+
+logtin/hats/urls.py käyttää luokkaa AdminDashboardView. Djangon dokumentaation mukaan (https://docs.djangoproject.com/en/5.2/ref/urls/) path()-funktion toinen parametri määrittää mitä tapahtuu, kun pyydetään ensimmäisessä parametrissa sijaitsevaa resurssia, joka vahvistaa teoriaani.
+
+Tiedän kohdan d) perusteella, että admin-dashboardin pääsynhallinnan pitäisi toimia, joten vertasin AdminDashboardView ja AdminShowAllView luokkia ja ainoa ero näissä oli funktiossa test_func(). Luokan AdminShowAllView funktiossa varmistettiin vain, että käyttäjä oli todennettu, kun taas toisen luokan funktiossa varmistettiin tämän lisäksi, että käyttäjä on henkilökuntaa.
+
+<img width="952" height="236" alt="image" src="https://github.com/user-attachments/assets/3ea598e0-5cab-46cd-a035-dca2c94d9ceb" />
+
+Tein korjauksen koodiin muuttamalla hats/urls.py-tiedostoa, niin että paths() funktio käyttää toisena parametrina AdminDashboardView luokkaa, kun pyydetään resurssia admin-console/. Kummatkin luokat tarjoilevat saman html-tiedoston, joten käyttöä muutoksen ei pitäisi haitata.
+
+<img width="952" height="236" alt="image" src="https://github.com/user-attachments/assets/592ce456-b9dd-41ba-9168-b83bdd6a048b" />
+
+Tallensin muutokset ja käynnistin palvelimen.
+
+	./manage.py runserver
+
+ Siirryin selaimella palvelimelle ja kirjauduin sisään.
+
+ Kirjautuneena sisään siirryin osoitteeseen `127.0.0.1:8000/admin-console/`.
+
+ Vastaukseksi sain 403 Forbidden, joten korjaus toimii ainakin peruskäyttäjän näkökulmasta.
+
+ <img width="1009" height="241" alt="image" src="https://github.com/user-attachments/assets/ccd74ebd-2c67-46bd-b802-b92281355f5e" />
