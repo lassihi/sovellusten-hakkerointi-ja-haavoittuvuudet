@@ -183,7 +183,33 @@ Tuloksissa olevasta wp-admin sivusta löytyi tehtävän lippu.
 
 <img width="999" height="230" alt="image" src="https://github.com/user-attachments/assets/7dbad097-2964-478a-8e3c-fc957c241cf3" />
 
-
 ## d) Murtaudu 020-your-eyes-only. Ks. Karvinen 2024: Hack'n Fix
+
+Tehtävää varten asensin pip:n ja virtualenv:n.
+
+	sudo apt-get install pip virtualenv
+Sekä tein muut valmistelut tehtävää varten.
+
+ 	cd Downloads/challenges/020-your-eyes-only/
+  	virtualenv virtualenv/ -p python3 --system-site-packages
+   	source virtualenv/bin/activate
+	pip install -r requirements.txt
+ 	cd logtin
+ 	./manage.py makemigrations; ./manage.py migrate
+
+Käynnistin ohjelman.
+  
+  	./manage.py runserver
+
+<img width="886" height="193" alt="image" src="https://github.com/user-attachments/assets/a2d34cbd-ad5a-49e3-835b-410db00af831" />
+
+Selasin tehtävän sivulle.
+
+<img width="1010" height="499" alt="image" src="https://github.com/user-attachments/assets/068de8e6-8197-4cb8-bd43-9c26bbb2308e" />
+
+Tehtävän tarkoituksena on löytää hallintapaneeli. Sovellusta aluksi tutkiessani päädyin 404-sivulle, jossa debug tila oli jäänyt päälle. Tämä paljasti todennäköisen hallintapaneelihakemiston `admin-console/`.
+
+<img width="1009" height="376" alt="image" src="https://github.com/user-attachments/assets/0a00790e-e2f0-4e47-8903-eacab6c86663" />
+
 
 ## e) Korjaa 020-your-eyes-only haavoittuvuus. Osoita testillä, että ratkaisusi toimii.
