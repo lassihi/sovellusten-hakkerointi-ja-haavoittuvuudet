@@ -239,7 +239,7 @@ Haavoittuvuus näyttäisi liittyvän rikkinäiseen pääsynhallintaan, joka ei t
 
 Django oli itselleni täysin tuntematon entuudestaan, joten jouduin tekemään hieman tutkiskelua.
 
-Löysin hallintakonsolin html-sivun tutkimalla lähdekoodia, sijainnista 020-your-eyes-only/logtin/hats/templates/hats/show-all.html.
+Löysin hallintakonsolin html-sivun pohjan tutkimalla lähdekoodia, sijainnista 020-your-eyes-only/logtin/hats/templates/hats/show-all.html.
 
 <img width="1037" height="233" alt="image" src="https://github.com/user-attachments/assets/0fc86924-dc21-480f-b61c-16e508cfdeb9" />
 
@@ -261,7 +261,7 @@ Tiedän kohdan d) perusteella, että admin-dashboardin pääsynhallinnan pitäis
 
 <img width="952" height="236" alt="image" src="https://github.com/user-attachments/assets/3ea598e0-5cab-46cd-a035-dca2c94d9ceb" />
 
-Tein korjauksen koodiin muuttamalla hats/urls.py-tiedostoa, niin että paths() funktio käyttää toisena parametrina AdminDashboardView luokkaa, kun pyydetään resurssia admin-console/. Kummatkin luokat tarjoilevat saman html-tiedoston, joten käyttöä muutoksen ei pitäisi haitata.
+Tein korjauksen koodiin muuttamalla hats/urls.py-tiedostoa, niin että paths() funktio käyttää toisena parametrina AdminDashboardView luokkaa, kun pyydetään resurssia admin-console/. Kummatkin luokat tarjoilevat saman html-pohjan, joten käyttöä muutoksen ei pitäisi haitata.
 
 <img width="952" height="236" alt="image" src="https://github.com/user-attachments/assets/592ce456-b9dd-41ba-9168-b83bdd6a048b" />
 
