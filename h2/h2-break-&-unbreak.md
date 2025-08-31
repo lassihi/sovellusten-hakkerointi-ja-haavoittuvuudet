@@ -26,10 +26,10 @@ Karvinen 2006: [Raportin kirjoittaminen](https://terokarvinen.com/2006/raportin-
 
 ## Suoritusympäristö
 
-OS: Debian 12 (VMWare virtuaalikone)
-Browser: Firefox
-Hardware: HP Notebook - 14-cf1006no
-Network: Langattomasti yhteydessä kotiverkkoon.
+OS: Debian 12 (VMWare virtuaalikone) \
+Browser: Firefox \
+Hardware: HP Notebook - 14-cf1006no \
+Network: Yhdistetty langattomasti kotiverkkoon. 
 
 ## a) Murtaudu 010-staff-only. Ks. Karvinen 2024: Hack'n Fix
 
