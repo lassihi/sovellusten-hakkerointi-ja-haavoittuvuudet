@@ -16,10 +16,20 @@ Karvinen 2023: [Find Hidden Web Directories - Fuzz URLs with ffuf](https://terok
         ffuf -u https://127.0.0.1/FUZZ -w common.txt
 
 PortSwigger: [Access control vulnerabilities and privilege escalation](https://portswigger.net/web-security/access-control)
-
-
+  - Vertikaalinen pääsynhallinta määrittää kuinka oikeudet jaetaan eri roolien ja tasojen välillä.
+  - Horisontaalinen pääsynhallinta rajoittaa pääsyä samantasoiseen dataan.
+  - Privilege escalation: Käyttäjä saa pääsyn ylemmän tason oikeudet tai samantasoisen toisen käyttäjän oikeudet.
 
 Karvinen 2006: [Raportin kirjoittaminen](https://terokarvinen.com/2006/raportin-kirjoittaminen-4/)
+  - Raportissa kerrotaan mitä tehtiin ja mitä tapahtui. Sen tulee olla toistettava, täsmällinen ja helppolukuinen.
+  - Raporttia kirjoitetaan jotta muistetaan jälkikäteen mitä on tehty, ajatusten selkeyttämiseksi ja muita auttamaan.
+
+## Suoritusympäristö
+
+OS: Debian 12 (VMWare virtuaalikone)
+Browser: Firefox
+Hardware: HP Notebook - 14-cf1006no
+Network: Langattomasti yhteydessä kotiverkkoon.
 
 ## a) Murtaudu 010-staff-only. Ks. Karvinen 2024: Hack'n Fix
 
@@ -71,9 +81,9 @@ Sijoitin toisen ehdon eteen hipsun (`1 OR '1=1`) ja ajoin kyselyn.
 
 <img width="752" height="588" alt="image" src="https://github.com/user-attachments/assets/6e8e6625-eda9-40d4-886b-10409cae9111" />
 
-Kysely meni läpi ja yhdeksi salasanaksi paljastui "foo". Salasana ei kuitenkaan ollut admin salasana. Yritin tässä kohtaa kerrata SQL:n syntaksia ja mahdollisesti saada dumpattua koko pins-taulun, mutta vaikutti siltä, että kyselyllä saisi vain yhden salasanan kerrallaan, joka oli aina "foo".
+Kysely meni läpi ja yhdeksi salasanaksi paljastui "foo". Salasana ei kuitenkaan ollut admin salasana. Yritin tässä kohtaa kerrata SQL:n syntaksia ja mahdollisesti saada koko pins-taulu, mutta vaikutti siltä, että kyselyllä saisi vain yhden salasanan kerrallaan, joka oli aina "foo".
 
-Lopulta sain idean hakea rivi kerrallaan jokaisen password-tietueen, jossa onnistuin alla olevalla kyselyllä.
+Lopulta sain idean hakea rivi kerrallaan jokaisen password-tietueen pins taulusta, jossa onnistuin alla olevalla kyselyllä.
 
 	SELECT password FROM pins WHERE pin='1' OR 1=1 ORDER BY password LIMIT 1 OFFSET 0 --';
 
@@ -121,7 +131,7 @@ Korjattu funktio:
 
 <img width="862" height="451" alt="image" src="https://github.com/user-attachments/assets/47d20e9f-b625-4ae8-8f28-a45d38c706ff" />
 
-Ohjelma ottaa pin-koodin kokonaislukuna tai palauttaa sen arvoksi "0", jos tämä ei ole mahdollista.
+Ohjelma ottaa pin-koodin kokonaislukuna tai palauttaa sen arvoksi "0", jos tämä tuottaa virheen, eli ei ole kokonaisluku.
 
 	if "pin" in request.form:
 		try:
@@ -174,7 +184,7 @@ Näyttää toimivan, joten aloin työstämään hakemistoja ffufilla. Otin ensik
 
 <img width="921" height="532" alt="image" src="https://github.com/user-attachments/assets/c2d65fd1-e26d-43b5-a2dd-f4993dd4ed4d" />
 
-Pyynnöt rajoitettiin jostain syystä lähes välittömästi vain noin muutamaan sekunnissa. Ffufista en löytänyt tähän ratkaisua, joten syynä oli mahdollisesti sovelluksen rate limit. Avasin taas selaimella sovelluksen, tein testihaun "127.0.0.2:8000/testi" ja kopioin haun pyynnön selaimen kehittäjätyökalujen Network-välilehdeltä curl syntaksissa. 
+Pyynnöt rajoitettiin jostain syystä lähes välittömästi vain noin muutamaan sekunnissa. Ffufista en löytänyt tähän ratkaisua, joten syynä oli mahdollisesti sovelluksen rate limit. Avasin taas selaimella sovelluksen, tein testihaun "127.0.0.2:8000/testi" ja kopioin haun pyynnön selaimen kehittäjätyökalujen Network-välilehdeltä curlina. 
 
 <img width="1007" height="822" alt="image" src="https://github.com/user-attachments/assets/ef5f3c50-1561-4d2a-b4b1-5460e4a331fb" />
 
@@ -192,18 +202,17 @@ Ajoin uuden komennon.
 
 <img width="1920" height="930" alt="image" src="https://github.com/user-attachments/assets/ef118218-f46b-4d9a-9d02-c5dc3e56f06a" />
 
-Tuloksissa olevasta wp-admin sivusta löytyi tehtävän lippu.
+Ffuf löysi palvelimelta sivun wp-admin, ja kun siirryin sivulle löysin tehtävän lipun.
 
 <img width="999" height="230" alt="image" src="https://github.com/user-attachments/assets/7dbad097-2964-478a-8e3c-fc957c241cf3" />
 
 ## d) Murtaudu 020-your-eyes-only. Ks. Karvinen 2024: Hack'n Fix
 
-Tehtävän tarkoituksena on löytää administrative
-
 Tehtävää varten asensin pip:n ja virtualenv:n.
 
 	sudo apt-get install pip virtualenv
-Sekä tein muut valmistelut tehtävää varten.
+ 
+Sekä tein muut valmistelut tehtävää varten ohjeen mukaan.
 
  	cd Downloads/challenges/020-your-eyes-only/
   	virtualenv virtualenv/ -p python3 --system-site-packages
@@ -289,3 +298,21 @@ Tallensin muutokset ja käynnistin palvelimen.
  Vastaukseksi sain 403 Forbidden, joten korjaus toimii ainakin peruskäyttäjän näkökulmasta.
 
  <img width="1009" height="241" alt="image" src="https://github.com/user-attachments/assets/ccd74ebd-2c67-46bd-b802-b92281355f5e" />
+
+## Lähteet
+
+Iso-Anttila, Karvinen: Sovellusten hakkerointi - 2025 alkusyksy: https://terokarvinen.com/sovellusten-hakkerointi/
+
+OWASP: OWASP Top 10: A01 Broken Access Control: https://owasp.org/Top10/A01_2021-Broken_Access_Control/
+
+Karvinen 2023: Find Hidden Web Directories - Fuzz URLs with ffuf: https://terokarvinen.com/2023/fuzz-urls-find-hidden-directories/
+
+PortSwigger: Access control vulnerabilities and privilege escalation: https://portswigger.net/web-security/access-control
+
+Karvinen 2006: Raportin kirjoittaminen: https://terokarvinen.com/2006/raportin-kirjoittaminen-4/
+
+Karvinen 2024: Hack'n Fix: https://terokarvinen.com/hack-n-fix/
+
+GeeksforGeeks 2025: SQL LIMIT Clause: https://www.geeksforgeeks.org/sql/sql-limit-clause/
+
+Django: django.urls functions for use in URLconfs: https://docs.djangoproject.com/en/5.2/ref/urls/
