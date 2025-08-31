@@ -17,9 +17,15 @@ Karvinen 2023: [Find Hidden Web Directories - Fuzz URLs with ffuf](https://terok
 
 PortSwigger: [Access control vulnerabilities and privilege escalation](https://portswigger.net/web-security/access-control)
 
+
+
 Karvinen 2006: [Raportin kirjoittaminen](https://terokarvinen.com/2006/raportin-kirjoittaminen-4/)
 
 ## a) Murtaudu 010-staff-only. Ks. Karvinen 2024: Hack'n Fix
+
+010-staff-only ja ohje: https://terokarvinen.com/hack-n-fix/
+
+Tehtävän tavoite: Löytää admin salasana, joka sisältää tekstin "SUPERADMIN".
 
 Aloitin asentamalla ohjeen vaatimat paketit.
 
@@ -65,30 +71,35 @@ Sijoitin toisen ehdon eteen hipsun (`1 OR '1=1`) ja ajoin kyselyn.
 
 <img width="752" height="588" alt="image" src="https://github.com/user-attachments/assets/6e8e6625-eda9-40d4-886b-10409cae9111" />
 
-Kysely meni läpi ja salasanaksi paljastui "foo". En saanut kuitenkaan selville oliko kyseessä käyttäjän admin salasana. Yritin tässä kohtaa kerrata SQL:n syntaksia ja mahdollisesti saada dumpattua koko pins-taulun, mutta vaikutti siltä, että kyselyllä saisi vain yhden salasanan kerrallaan, joka oli aina "foo".
+Kysely meni läpi ja yhdeksi salasanaksi paljastui "foo". Salasana ei kuitenkaan ollut admin salasana. Yritin tässä kohtaa kerrata SQL:n syntaksia ja mahdollisesti saada dumpattua koko pins-taulun, mutta vaikutti siltä, että kyselyllä saisi vain yhden salasanan kerrallaan, joka oli aina "foo".
 
 Lopulta sain idean hakea rivi kerrallaan jokaisen password-tietueen, jossa onnistuin alla olevalla kyselyllä.
-ORDER BY määrittää minkä sarakkeen mukaan tulokset järjestetään (oletuksena laskevassa järjestyksessä), LIMIT määrittä kuinka monta tietuetta näytetään ja OFFSET määrittää monesko tietue esitetään. 
-https://www.geeksforgeeks.org/sql/sql-limit-clause/
 
-    SELECT password FROM pins WHERE pin='1' OR 1=1 ORDER BY password LIMIT 1 OFFSET 0 --';
-    
+	SELECT password FROM pins WHERE pin='1' OR 1=1 ORDER BY password LIMIT 1 OFFSET 0 --';
+
 Jokaisen kyselyn jälkeen OFFSET nousee yhdellä, jotta saan seuraavan rivin.
 
-    SELECT password FROM pins WHERE pin='1' OR 1=1 ORDER BY password LIMIT 1 OFFSET 1 --';
+	SELECT password FROM pins WHERE pin='1' OR 1=1 ORDER BY password LIMIT 1 OFFSET 1 --';
     SELECT password FROM pins WHERE pin='1' OR 1=1 ORDER BY password LIMIT 1 OFFSET 2 --';
     SELECT password FROM pins WHERE pin='1' OR 1=1 ORDER BY password LIMIT 1 OFFSET 3 --';
     SELECT password FROM pins WHERE pin='1' OR 1=1 ORDER BY password LIMIT 1 OFFSET 4 --';
     SELECT password FROM pins WHERE pin='1' OR 1=1 ORDER BY password LIMIT 1 OFFSET 5 --';
+
+ORDER BY määrittää minkä sarakkeen mukaan tulokset järjestetään (oletuksena laskevassa järjestyksessä), LIMIT määrittä kuinka monta tietuetta näytetään ja OFFSET määrittää monesko tietue esitetään.
+
+https://www.geeksforgeeks.org/sql/sql-limit-clause/
+
+Kyselyiden tuottamat salasanat:
 
 <img width="777" height="568" alt="image" src="https://github.com/user-attachments/assets/5f52ef0a-a7bc-47e5-a1a4-d9f0b5f7bf0c" />
 <img width="777" height="601" alt="image" src="https://github.com/user-attachments/assets/895b439f-9503-4d20-86a2-8e581e0b94b2" />
 <img width="777" height="568" alt="image" src="https://github.com/user-attachments/assets/87685c60-3d7f-4bf2-8b44-70e5527e92d2" />
 <img width="777" height="601" alt="image" src="https://github.com/user-attachments/assets/c3ccaeb1-4744-425d-96b8-c65bdbc4f3a5" />
 
-Viides sekä kuudes rivi antoivat salasanaksi "(not found)", joten oletin rivejä olevan neljä. Salasanojen sisällön perustellaa vaikuttaisi siltä, että admin salasana olisi "SUPERADMIN%%rootALL-FLAG{Tero-e45f8764675e4463db969473b6d0fcdd}". 
+Viides sekä kuudes rivi antoivat salasanaksi "(not found)", joten oletin rivejä olevan neljä. Salasanojen sisällön perusteella admin salasana on "SUPERADMIN%%rootALL-FLAG{Tero-e45f8764675e4463db969473b6d0fcdd}". 
 
 ## b) Korjaa 010-staff-only haavoittuvuus lähdekoodista. Osoita testillä, että ratkaisusi toimii.
+
 Korjataan tässä vain SQL-injektio.
 
 Avasin lähdekoodin, `micro staff-only.py`.
@@ -120,7 +131,7 @@ Ohjelma ottaa pin-koodin kokonaislukuna tai palauttaa sen arvoksi "0", jos täm�
 	else:
 		pin = "0"
 
-Luodaan kysely, jossa muuttuja "pin" annetaan parametrina SQL injektioilta suojaamiseksi. https://stackoverflow.com/questions/17972020/how-to-execute-raw-sql-in-flask-sqlalchemy-app
+Muokkasin kyselyä niin, että muuttuja "pin" annetaan parametrina SQL injektioilta suojaamiseksi. https://stackoverflow.com/questions/17972020/how-to-execute-raw-sql-in-flask-sqlalchemy-app
 
     res=db.session.execute('SELECT password FROM pins WHERE pin=:pin', {'pin':str(pin)})
 
@@ -134,11 +145,13 @@ Kun syötin alkuperäisen injektion, niin muutti sovellus pin-koodiksi 0.
 
 Myöskään injektio `1' OR 1=1 ORDER BY password LIMIT 1 OFFSET 0 --` ei toiminut enää.
 
-Salasanat saa veilä esille, jos tietää oikean pin-koodin.
+Salasanat saa vielä esille, jos tietää oikean pin-koodin.
 
 <img width="755" height="558" alt="image" src="https://github.com/user-attachments/assets/2d81dd5c-ff56-4597-8e32-8851482a7358" />
 
 ## c) Ratkaise dirfuzt-1 artikkelista Karvinen 2023: Find Hidden Web Directories - Fuzz URLs with ffuf. Tämä auttaa 020-your-eyes-only ratkaisemisessa.
+
+dirfuzt-1: https://terokarvinen.com/2023/fuzz-urls-find-hidden-directories/
 
 Asensin ffuf:n ja seclists github repositoryn, josta löytyy suosituimmat sanalistat.
 
