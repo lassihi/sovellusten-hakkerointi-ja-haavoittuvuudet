@@ -91,6 +91,8 @@ Salasana oli oikein.
 
 ## d) Vapaaehtoinen bonus: Cryptopals. Crypto Challenge Set 1. Tätä voi tehdä useamman viikon bonuksena. Jos saat ratkaistua kohdat 1 .. "4. Detect single-character XOR", olet jo astunut salakirjoituksen maailmaan.
 
+Tein seuraavat tehtävät eri koneella, sillä virtuaalikoneella ohjelmoiminen on aiemmin tuottanut tuskaa.
+
 ### Challenge 1:
 
 <img width="493" height="208" alt="image" src="https://github.com/user-attachments/assets/e00e1000-77e6-4903-8db8-137bdb758281" />
