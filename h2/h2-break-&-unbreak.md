@@ -1,6 +1,6 @@
 # Harjoitus 2: Break & unbreak
 Kurssi: Sovellusten hakkerointi ja haavoittuvuudet https://terokarvinen.com/sovellusten-hakkerointi/ \
-Tehtävänanto: https://terokarvinen.com/sovellusten-hakkerointi/#h1-korkeat-standardit-lari
+Tehtävänanto: https://terokarvinen.com/sovellusten-hakkerointi/#h2-break--unbreak-tero
 
 ## x) Lue/katso/kuuntele ja tiivistä.
 OWASP: OWASP Top 10: [A01 Broken Access Control](https://owasp.org/Top10/A01_2021-Broken_Access_Control/)
