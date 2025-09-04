@@ -123,4 +123,11 @@ Sain seuraavan koodin luotua.
 
 <img width="464" height="111" alt="image" src="https://github.com/user-attachments/assets/13766463-25c2-40fb-adef-8027bc8db0a7" />
 
-Muuttujille bytes1 ja string2 ei kuitenkaan voinut suorittaa XOR operaatiota, sillä ne olivat eri tyyppiä (bytes ja str).
+Muuttujille bytes1 ja string2 ei kuitenkaan voinut suorittaa XOR operaatiota, sillä ne olivat eri tyyppiä (bytes ja str). Olin myös antanut saman merkkijonon kahdesti.
+Challenge 1 mainitsi, että kaikki operaatiot tulee tehdä tehtävissä tavuille, joten muutin toisenkin muuttujan tavuksi ja stackoverflown https://stackoverflow.com/questions/29408173/byte-operations-xor-in-python avulla sain suoritettua XOR operaation niille. Lopuksi muutin tuloksen takaisin heksadesimaaliksi.
+
+<img width="465" height="170" alt="image" src="https://github.com/user-attachments/assets/904ccb50-b841-4a2f-b75e-c47d896b8efc" />
+
+Ohjelma tuotti oikean tuloksen:
+
+<img width="332" height="26" alt="image" src="https://github.com/user-attachments/assets/1ce0dc33-1abd-4db8-9ca0-47270d33cd6d" />
