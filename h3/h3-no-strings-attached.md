@@ -2,7 +2,14 @@
 Kurssi: Sovellusten hakkerointi ja haavoittuvuudet https://terokarvinen.com/sovellusten-hakkerointi/ \
 Tehtävänanto: https://terokarvinen.com/sovellusten-hakkerointi/#h3-no-strings-attached-tero
 
-## a) Strings. Lataa ezbin-challenges.zip Aja 'passtr'. Selvitä oikea salasana 'strings' avulla. Selvitä myös lippu.
+## Suoritusympäristö:
+Tietokone: Lenovo Legion Y540-15IRH kannettava kytkettynä langallisesti kotiverkkoon.
+-Intel Core i7-9750H
+-NVIDIA Geforce RTX 2060 6GB
+-16GB DDR4 2666MHz
+Käyttöjärjestelmä: Debian 12, Kali Linux (VMWare virtuaalikone)
+
+## a) Strings. Lataa [ezbin-challenges.zip](https://terokarvinen.com/loota/yctjx7/ezbin-challenges.zip) Aja 'passtr'. Selvitä oikea salasana 'strings' avulla. Selvitä myös lippu.
 Asensin harjoitukset ja purin zip tiedoston.
 
 <img width="181" height="100" alt="image" src="https://github.com/user-attachments/assets/283f6f3a-3ec5-4d6c-9dee-aeadbe974198" />
@@ -54,7 +61,7 @@ Tarkastin löytääkö strings salasanan:
 
 Salasanaa, eikä mitään sen merkkejä näe enää suoraan binääristä.
 
-## c) Packd. Aja 'packd' paketista ezbin-challenges.zip. Mikä on salasana? Mikä on lippu? (Tämä tehtävä on hieman haastavampi. Kirjaa ylös kokeilemasi lähestymistavat ja keksimäsi hypoteesit. Toivottavasti pääset itse maaliin, mutta jos et, läpikävely paljastuu tunnilla...)
+## c) Packd. Aja 'packd' paketista [ezbin-challenges.zip](https://terokarvinen.com/loota/yctjx7/ezbin-challenges.zip). Mikä on salasana? Mikä on lippu? (Tämä tehtävä on hieman haastavampi. Kirjaa ylös kokeilemasi lähestymistavat ja keksimäsi hypoteesit. Toivottavasti pääset itse maaliin, mutta jos et, läpikävely paljastuu tunnilla...)
 
 Ulkoa päin packd on hyvin samanlainen, kuin passtr.
 
@@ -68,10 +75,10 @@ Alla mielenkiintoisimpia rivejä tulosteesta.
 
 <img width="480" height="264" alt="image" src="https://github.com/user-attachments/assets/a5912f16-76a9-4b72-9e52-13e342f46217" />
 
-Näistä huomion herätti erityisesti mahdollinen lippu/osa lipusta, kommentit UPX packerista ja jokin hakemisto /proc/self/exe. Päätin tutkia UPX packeria tarkemmin. DuckDuckGo antoi hakusanalla "UPX packer" ehdotukseksi videon "[Unpacking UPX malware](https://www.youtube.com/watch?v=8scn4PKry-o)", joka kuulosti lupaavalta.
+Näistä huomion herätti erityisesti mahdollinen lippu/osa lipusta, kommentit UPX packerista ja jokin hakemisto /proc/self/exe. Päätin tutkia UPX packeria tarkemmin, sillä on mahdollista, että tiedoston pakkaaminen on muuttanut binäärin tekstejä. DuckDuckGo antoi hakusanalla "UPX packer" ehdotukseksi videon "[Unpacking UPX malware](https://www.youtube.com/watch?v=8scn4PKry-o)", joka kuulosti lupaavalta.
 Nopealla vilkaisulla huomasin, että videosta ei juurikaan muuten ole hyötyä kuin vain todistamaan, että olen oikeilla jäljillä.
 
-Löysin artikkelin https://tech-zealots.com/reverse-engineering/dissecting-manual-unpacking-of-a-upx-packed-file/, joka ehdotti UPX pakkauksen purkamista optiolla -d. Huomasin samalle, että UPX on valmiksi kaliin ladattu työkalu.
+Löysin artikkelin https://tech-zealots.com/reverse-engineering/dissecting-manual-unpacking-of-a-upx-packed-file/, joka ehdotti UPX pakkauksen purkamista optiolla -d. Huomasin samalla, että UPX on valmiksi Kaliin ladattu työkalu.
 
 Tein kopion packd tiedostosta ja purin alkuperäisen packd tiedoston UPX:n avulla.
 
@@ -133,3 +140,21 @@ Challenge 1 mainitsi, että kaikki operaatiot tulee tehdä tehtävissä tavuille
 Ohjelma tuotti oikean tuloksen:
 
 <img width="332" height="26" alt="image" src="https://github.com/user-attachments/assets/1ce0dc33-1abd-4db8-9ca0-47270d33cd6d" />
+
+## Challenge 3:
+
+Jatkuu myöhemmin...
+
+## Lähteet:
+
+Iso-Anttila, Karvinen: Sovellusten hakkerointi - 2025 alkusyksy: https://terokarvinen.com/sovellusten-hakkerointi/
+
+Karvinen: Ezbin-challenges: https://terokarvinen.com/loota/yctjx7/ezbin-challenges.zip
+
+Slobodyanyuk, Y: Binary obfuscation - String obfuscating in C: https://yurisk.info/2017/06/25/binary-obfuscation-string-obfuscating-in-C/index.html
+
+Daulaguphu, S: https://tech-zealots.com/reverse-engineering/dissecting-manual-unpacking-of-a-upx-packed-file/
+
+byte operations (XOR) in python: https://stackoverflow.com/questions/29408173/byte-operations-xor-in-python 
+
+Cryptopals: Crypto Challenge Set 1: https://www.cryptopals.com/sets/1
