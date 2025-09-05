@@ -145,6 +145,20 @@ Ohjelma tuotti oikean tuloksen:
 
 ## Challenge 3:
 
+<img width="491" height="210" alt="image" src="https://github.com/user-attachments/assets/e2b639a2-048d-44ce-b0c2-9d4a89c074fe" />
+
+Tehtävään väsäsin seuraavanlaisen ohjelman. Ohjelma ratkaisee XOR operaation jokaista kirjainta kohden ja vertaa ratkaisun kirjainten yleisyyttä normaaliin yleisyyteen englanninkielisessä tekstissä, joka pisteytetään. Tulokset esitetään pisteytyksen mukaan. Kirjainten yleisyyden englanninkielisessä tekstissä löysin Wikipediasta (https://en.wikipedia.org/wiki/Letter_frequency).
+
+<img width="433" height="461" alt="image" src="https://github.com/user-attachments/assets/698995e2-8df4-4fe2-bfa2-6d48ab092b89" />
+
+<img width="442" height="200" alt="image" src="https://github.com/user-attachments/assets/bb41eb93-17ce-477c-8fb6-aacab81283e9" />
+
+Tuntien pähkäilyn jälkeen tuntuu siltä, että tähän olisi varmasti ollut helpompikin ratkaisu.
+
+<img width="327" height="278" alt="image" src="https://github.com/user-attachments/assets/fe1477d0-a9c7-4d23-b4ff-63bac0085d18" />
+
+## Challenge 4:
+
 Jatkuu myöhemmin...
 
 ## Lähteet:
