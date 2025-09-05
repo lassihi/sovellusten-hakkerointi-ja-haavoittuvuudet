@@ -3,10 +3,10 @@ Kurssi: Sovellusten hakkerointi ja haavoittuvuudet https://terokarvinen.com/sove
 Tehtävänanto: https://terokarvinen.com/sovellusten-hakkerointi/#h3-no-strings-attached-tero
 
 ## Suoritusympäristö:
-Tietokone: Lenovo Legion Y540-15IRH kannettava kytkettynä langallisesti kotiverkkoon.
--Intel Core i7-9750H
--NVIDIA Geforce RTX 2060 6GB
--16GB DDR4 2666MHz
+Tietokone: Lenovo Legion Y540-15IRH kannettava kytkettynä langallisesti kotiverkkoon. \
+-Intel Core i7-9750H \
+-NVIDIA Geforce RTX 2060 6GB \
+-16GB DDR4 2666MHz \
 Käyttöjärjestelmä: Debian 12, Kali Linux (VMWare virtuaalikone)
 
 ## a) Strings. Lataa [ezbin-challenges.zip](https://terokarvinen.com/loota/yctjx7/ezbin-challenges.zip) Aja 'passtr'. Selvitä oikea salasana 'strings' avulla. Selvitä myös lippu.
