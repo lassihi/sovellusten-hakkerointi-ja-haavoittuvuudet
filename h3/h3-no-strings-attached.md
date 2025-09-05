@@ -55,6 +55,8 @@ UNHIDE_STRING tekee käänteisen operaation jokaiselle merkille. HIDE_STRING taa
 
 (https://yurisk.info/2017/06/25/binary-obfuscation-string-obfuscating-in-C/index.html)
 
+Käänsin ohjelman uudestaan binääriksi `gcc passtr.c -o passtr_obfuscated`.
+
 Tarkastin löytääkö strings salasanan:
 
 <img width="269" height="462" alt="image" src="https://github.com/user-attachments/assets/5eb34d87-d540-4a78-a5bf-8b3134d3f688" />
