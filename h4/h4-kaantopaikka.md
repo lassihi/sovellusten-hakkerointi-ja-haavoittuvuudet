@@ -187,62 +187,78 @@ Nimesin muuttujat seuraavalla tavalla:
 * uVar3 = return_value
 * lVar4 = counter
 
-<img width="301" height="271" alt="image" src="https://github.com/user-attachments/assets/9d96c9c1-e68f-4496-8fa8-8280e69cb9fa" />
+<img width="301" height="271" alt="image" src="https://github.com/user-attachments/assets/9d96c9c1-e68f-4496-8fa8-8280e69cb9fa" >
 
-    
-    undefined8 main(int cmd_params_num,long input_param)
-    
-    {
-      char password_character;
+Ohjelman selitys suoritusjärjestyksessä:
+-     undefined8 main(int cmd_params_num,long input_param)
+
+    - Määritellään pääohjelma main, joka saa kaksi parametria. Ensimmäinen on komentoriviparametrien lukumäärä (esim. `./crackme02 salasana` = 2) ja toinen käyttäjän syöte.
+
+-     char password_character;
       undefined8 return_value;
       long counter;
       char input_character;
-      
-      if (cmd_params_num == 2) {
-        password_character = 'p';
-        counter = 0;
-        do {
-          input_character = *(char *)(*(long *)(input_param + 8) + counter);
-          if (input_character == '\0') break;
-          if (password_character + -1 != (int)input_character) {
-            printf("No, %s is not correct.\n");
-            return 1;
-          }
-          password_character = "password1"[counter + 1];
-          counter = counter + 1;
-        } while (password_character != '\0');
-        printf("Yes, %s is correct!\n");
-        return_value = 0;
-      }
-      else {
-        puts("Need exactly one argument.");
-        return_value = 0xffffffff;
-      }
-      return return_value;
-    }
-
-
-
-Ohjelman selitys suoritusjärjestyksessä:
-- <img width="201" height="10" alt="image" src="https://github.com/user-attachments/assets/2401c057-bd9d-45dc-9cb1-34c05e23473d" />
-
-    - Määritellään pääohjelma main, joka saa kaksi parametria. Ensimmäinen on komentoriviparametrien lukumäärä (esim. `./crackme02 salasana` = 2) ja toinen käyttäjän syöte.
-- <img width="134" height="40" alt="image" src="https://github.com/user-attachments/assets/27ea686e-b432-4956-bf49-021fa8f3393c" />
 
     - Alustetaan neljä muuttujaa.
-- <img width="127" height="10" alt="image" src="https://github.com/user-attachments/assets/5d9a2fb4-4074-4d38-81de-a1404c775273" />
+
+-     if (cmd_params_num == 2) {
+      ....
+      }
+      else {
+          puts("Need exactly one argument.");
+          return_value = 0xffffffff;
+      }
 
     - Tarkistetaan montako komentoriviparametria annettiin.
     - Jos 2, jatketaan if lauseen sisälle.
-    - jos ei 2, niin tulostetaan suoritetaan else lause. <img width="141" height="28" alt="image" src="https://github.com/user-attachments/assets/eb7f5eeb-61c5-4fe3-b394-3093262af7aa" />
-- <img width="125" height="17" alt="image" src="https://github.com/user-attachments/assets/6df1979f-c685-4580-bcb4-98cb878ef25a" />
+    - jos ei 2, niin suoritetaan else lauseen koodi.
+
+-     password_character = 'p';
+      counter = 0;
 
     - Asetetaan password_character muuttujaan arvo 'p'.
     - Asetetaan counter muuttujaan arvo 0.
  
 - Do-while loopissa tarkastetaan onko while True.
     - Jos True suoritetaan do osio, kunnes while = False.
-    - <img width="272" height="97" alt="image" src="https://github.com/user-attachments/assets/310b2cb1-4551-4a27-9cc0-20762ee3cebd" />
+
+- WHILE:
+    -     } while (password_character != '\0');
+          printf("Yes, %s is correct!\n");
+          return_value = 0;
+        - Tarkastetaan onko password_character tyhjä merkki.
+            - Jos tyhjä, niin kerrotaan vastauksen olevan oikein ja palautetaan 0.
+            - Jos ei tyhjä, jatketaan do lauseeseen. 
+
+- DO:
+    -     input_character = *(char *)(*(long *)(input_param + 8) + counter);
+        - En tarkalleen tiedä mitä jokainen asia tekee, mutta päättelemällä asetetaan input_charecter muuttujan arvoksi input_param[counter]
+    -     if (input_character == '\0') break;
+        - Jos ollaan käyty koko input_param läpi, poistutaan loopista.
+    -     if (password_character + -1 != (int)input_character) {
+              printf("No, %s is not correct.\n");
+              return 1;
+          }
+        - Jos password_character esitettynä kokonaislukuna -1, ei ole sama kuin input_character esitettynä kokonaislukuna, niin tulosta merkkijono ja palauta arvo 1.
+    -     password_character = "password1"[counter + 1];
+        - Muutetaan password_character arvoksi merkkijonon "password1" seuraava kirjain.
+    -     counter = counter + 1;
+        - Nostetaan loopin kierrosten laskuria yhdellä.
+    - Tarkistetaan while-arvo ja mahdollisesti suoritetaan do uudestaan.
+ 
+Selitys on hieman monimutkainen, mutta käytännössä ohjelma ratkeaa, kun syötetään merkkijono, jonka jokainen merkki esitettynä kokonaislukuna on salasanan "password1" vastaavan merkin kokonaislukuesitystä yhden pienempi.
+
+Esim. 
+- p = 112, joten 112-1 = 111 = 'o'
+- a = 97, joten 97-1 = 96 = '`'
+- s = 115, joten 115-1 = 114 = 'r'
+- jne...
+
+<img width="800" height="600" alt="image" src="https://github.com/user-attachments/assets/5151a7b6-510d-4cf3-877e-03fbc12155b3" />
+
+Kuva: https://www.geeksforgeeks.org/dsa/ascii-table/
+
+Näin saadaan "password1" vastaava merkkijono "o´rrvnqc0". Tämä kun syötetään ohjelmalle, saadaan binääri ratkaistua.
 
 <img width="208" height="42" alt="image" src="https://github.com/user-attachments/assets/1c4a7884-7a3e-4c5e-9516-17b22c06b28e" />
 
