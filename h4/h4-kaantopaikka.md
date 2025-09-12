@@ -265,4 +265,5 @@ Näin saadaan "password1" vastaava merkkijono "o´rrvnqc0". Tämä kun syötetä
 ## g) Vapaaehtoinen: Ja sen yli. Crackme01 on useampia ratkaisuja. Montako löydät? Miksi?
 Kun alunperin tutkin tehtävää crackme01 huomasin, että annettua salasanaa verrataan oikean salasanaan funktiolla strncmp(string, "password01", 9). Strncmp:n kolmas parametri kertoo kuinka monta kirjainta merkkijonojen alusta verrataan toisiinsa (https://www.tutorialspoint.com/c_standard_library/c_function_strncmp.htm). Lopuilla kirjaimilla ei ole enää vertauksen kannalta väliä, joten kunhan vastaus alkaa "password01", niin sen perään voi lisätä minkä tahansa merkin tai merkkijonon ja saada oikean vastauksen. Ratkaisuja löytyy siis enemmän kuin mitä osaan itse laskea.
 
-<img width="240" height="125" alt="image" src="https://github.com/user-attachments/assets/ed508d8d-c7f8-469e-b6d8-b11428b42536" />
+<img width="263" height="125" alt="image" src="https://github.com/user-attachments/assets/c8455cff-1f3b-4885-8e44-64d29832d629" />
+
