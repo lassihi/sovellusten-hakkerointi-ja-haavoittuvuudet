@@ -11,7 +11,7 @@ Käyttöjärjestelmä: Kali Linux (VMWare virtuaalikone)
 
 ## x) Lue/katso/kuuntele ja tiivistä.
 
-Hammond 2022: Ghidra for Reverse Engineering (PicoCTF 2022 #42 'bbbloat') (Video, noin 20 min)
+Hammond [2022: Ghidra for Reverse Engineering (PicoCTF 2022 #42 'bbbloat')](https://www.youtube.com/watch?v=oTD_ki86c9I&t=885s)(Video, noin 20 min)
 - Ghidra asennettiin githubista (https://github.com/NationalSecurityAgency/ghidra), jonka jälkeen asennettiin oikea jdk-ympäristö.
 - CTF-ohjelma avattiin Ghidralla ja ohjelmasta etsittiin arvo, johon käyttäjän syötettä verrataan.
 - Löydetty heksadesimaaliarvo muutettiin desimaaliksi pythonilla.
@@ -64,7 +64,7 @@ Tuplaklikkasin packd-tiedostoa sen analysoimiseksi ja vastasin "Yes".
 
 Analyysin tein oletusasetuksilla.
 
-Analyysin jälkeen Ghidra esitti suoraan main()-funktion eli pääohjelman ilman, oikealla puolella ikkunaa.
+Analyysin jälkeen Ghidra esitti suoraan main-funktion eli pääohjelman oikealla puolella ikkunaa.
 
 <img width="815" height="462" alt="image" src="https://github.com/user-attachments/assets/4acb93db-5ef4-4f38-ba1c-e671eda61971" />
 
@@ -81,12 +81,12 @@ Ohjelman toiminta suoritusjärjestyksessä:
 - `char user_input [32]`
   - Alustaa 32 merkkiä pitkän merkkijonon "user_input".
 - `puts("Wha\'s the password?");`
-  - Kutsuu funktiota puts(), jolle annetaan parametriksi "Wha\'s the password?"
+  - Kutsuu funktiota puts(), jolle annetaan parametriksi "What\'s the password?"
   - puts() tulostaa annetun merkkijonon
 - `__isoc99_scanf(&DAT_0010201d, user_input)`
   - Kutsuu funktiota __isoc99_scanf(), jolle annetaan parametreiksi &DAT_0010201d, user_input.
-  - __isoc99_scanf() on gcc kääntäjän versio scanf() funktiosta (luetaan käyttäjän antama syöte).
-  - &DAT_0010201d on todennäköisesti pointer, joka määrittää mistä syöte luetaan.
+  - __isoc99_scanf() on gcc kääntäjän versio scanf() funktiosta (luetaan käyttäjän antama syöte). (https://stackoverflow.com/questions/16376341/isoc99-scanf-and-scanf)
+  - &DAT_0010201d on todennäköisesti pointer yms., joka määrittää mistä kohdasta syöte luetaan.
   - user_input on muuttuja, johon syöte asetetaan.
 - `cmp_result = strcmp(user_input, "piilos-AnAnAs")`
   - Syöttää cmp_result muuttujaan funktion strcmp(user_input, "piilos-AnAnAs") palautusarvon.
@@ -232,7 +232,7 @@ Ohjelman selitys suoritusjärjestyksessä:
 
 - DO:
     -     input_character = *(char *)(*(long *)(input_param + 8) + counter);
-        - En tarkalleen tiedä mitä jokainen asia tekee, mutta päättelemällä asetetaan input_charecter muuttujan arvoksi input_param[counter]
+        - En tarkalleen tiedä mitä jokainen asia tässä tekee, mutta päättelemällä asetetaan input_charecter muuttujan arvoksi input_param[counter]
     -     if (input_character == '\0') break;
         - Jos ollaan käyty koko input_param läpi, poistutaan loopista.
     -     if (password_character + -1 != (int)input_character) {
@@ -277,3 +277,19 @@ Tämä johtuu siitä, että ohjelma lopettaa vastauksen tarkastamisen heti kun s
 <img width="320" height="269" alt="image" src="https://github.com/user-attachments/assets/d3bf9515-ee0e-44a8-8c48-d9245ca17566" />
 
 <img width="294" height="164" alt="image" src="https://github.com/user-attachments/assets/f7941cb0-f299-42ce-a127-6b6377af060f" />
+
+## Lähteet
+
+Iso-Anttila, Karvinen: Sovellusten hakkerointi - 2025 alkusyksy: https://terokarvinen.com/sovellusten-hakkerointi/
+
+Hammond 2022: Ghidra for Reverse Engineering: https://www.youtube.com/watch?v=oTD_ki86c9I&t=885s
+
+Karvinen: Ezbin-challenges: https://terokarvinen.com/loota/yctjx7/ezbin-challenges.zip
+
+https://stackoverflow.com/questions/16376341/isoc99-scanf-and-scanf
+
+Tindall 2023: crackmes: https://github.com/NoraCodes/crackmes
+
+GeeksForGeeks 2025: ASCII Values Alphabets ( A-Z, a-z & Special Character Table ): https://www.geeksforgeeks.org/dsa/ascii-table/
+
+Tutorials Point: C Library - strncmp() function: https://www.tutorialspoint.com/c_standard_library/c_function_strncmp.htm
