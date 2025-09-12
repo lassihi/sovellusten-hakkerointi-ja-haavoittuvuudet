@@ -189,6 +189,40 @@ Nimesin muuttujat seuraavalla tavalla:
 
 <img width="301" height="271" alt="image" src="https://github.com/user-attachments/assets/9d96c9c1-e68f-4496-8fa8-8280e69cb9fa" />
 
+    
+    undefined8 main(int cmd_params_num,long input_param)
+    
+    {
+      char password_character;
+      undefined8 return_value;
+      long counter;
+      char input_character;
+      
+      if (cmd_params_num == 2) {
+        password_character = 'p';
+        counter = 0;
+        do {
+          input_character = *(char *)(*(long *)(input_param + 8) + counter);
+          if (input_character == '\0') break;
+          if (password_character + -1 != (int)input_character) {
+            printf("No, %s is not correct.\n");
+            return 1;
+          }
+          password_character = "password1"[counter + 1];
+          counter = counter + 1;
+        } while (password_character != '\0');
+        printf("Yes, %s is correct!\n");
+        return_value = 0;
+      }
+      else {
+        puts("Need exactly one argument.");
+        return_value = 0xffffffff;
+      }
+      return return_value;
+    }
+
+
+
 Ohjelman selitys suoritusjärjestyksessä:
 - <img width="201" height="10" alt="image" src="https://github.com/user-attachments/assets/2401c057-bd9d-45dc-9cb1-34c05e23473d" />
 
