@@ -267,3 +267,13 @@ Kun alunperin tutkin tehtävää crackme01 huomasin, että annettua salasanaa ve
 
 <img width="263" height="125" alt="image" src="https://github.com/user-attachments/assets/c8455cff-1f3b-4885-8e44-64d29832d629" />
 
+## h) Vapaaehtoinen: Pyytämättäkin. Crackme02 on kaksi ratkaisua. Löydätkö molemmat?
+Niin pitkään ehdin crackme02 käänteismallinnettua koodia tutkia, että löysin myös muutaman muun ratkaisun.
+
+Ohjelma hyväksyy kaikki seuraavat merkkijonot ratkaisuina: "", "o", "o`", "o'r", ..., "o'rrvnqc", "o'rrvnqc0". Yhteensä ratkaisuja on 10.
+
+Tämä johtuu siitä, että ohjelma lopettaa vastauksen tarkastamisen heti kun se kohtaa siinä tyhjän merkin.
+
+<img width="320" height="269" alt="image" src="https://github.com/user-attachments/assets/d3bf9515-ee0e-44a8-8c48-d9245ca17566" />
+
+<img width="294" height="164" alt="image" src="https://github.com/user-attachments/assets/f7941cb0-f299-42ce-a127-6b6377af060f" />
