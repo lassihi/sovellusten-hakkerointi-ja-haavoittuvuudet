@@ -42,3 +42,5 @@ Ajoin sen sisältämän ohjelman `gdb_example1`.
 Ohjelma tuotti merkkijonon "Khoor/#zruog1", jonka jälkeen se kaatui segmentation faultin vuoksi. Segmentation fault on virhe, joka syntyy muistin suojelemiseksi, kun ohjelma yrittää käyttää muistia tavalla joka ei ole sallittua (https://en.wikipedia.org/wiki/Segmentation_fault). 
 
 Avasin ohjelman gdb:llä ja siirryin split layoutiin.
+
+<img width="414" height="305" alt="image" src="https://github.com/user-attachments/assets/ebd1bc95-d974-446a-9dcb-a179e040d3b9" />
