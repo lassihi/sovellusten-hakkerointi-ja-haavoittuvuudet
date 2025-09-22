@@ -98,6 +98,42 @@ Annoin komennon `jump *(main+137)` ja ohjelma tulosti lipun.
 
 <img width="857" height="499" alt="image" src="https://github.com/user-attachments/assets/2631440e-781e-48db-93a0-ce9a011158cc" />
 
+## Lab 3
+Päivitys 22.9.2025
+
+### Crackme02
+
+Tarkastaa onko `%edi == $0x2` eli onko kaksi parametria. Jos ei, niin tulostaa virheen parametreista.
+
+<img width="460" height="26" alt="image" src="https://github.com/user-attachments/assets/27d35bb2-482d-43c7-8af9-76eb2e7fc85a" />
+
+Tarkastaa onko `%rax == %0x6`, eli ympäröivän koodin perusteella onko parametrin pituus 6. Tämän testasin oikeaksi eri pituisia parametreja käyttäen. Jos ei ole oikein, tulostaa virheen väärästä salasanasta. Jos on oikein ajaa funktion check_pw.
+
+<img width="393" height="85" alt="image" src="https://github.com/user-attachments/assets/dfaf70b6-24bc-45db-9176-96cef7436cd1" />
+
+Check_pw funktion toimintaa en saanut täysin ymmärrettyä, mutta oli kuitenkin pieni aavistus, että funktion palautusarvo `%eax = $0x1`, jos salasana on oikein ja `%eax = $0x0`, jos salasana on väärin.
+
+<img width="451" height="194" alt="image" src="https://github.com/user-attachments/assets/ec8bf2aa-ce25-4a78-91b7-116c4df76dbc" />
+
+Ennen syvempää analyysiä lähdin katsomaan ohjelman palautusarvoja eri tilanteissa, sillä tehtävän tarkoitus oli saada ohjelma palauttamaan arvon 0. 
+
+Ilman parametria: `gdb crackme02`
+
+<img width="471" height="470" alt="image" src="https://github.com/user-attachments/assets/b1eba584-dabf-4f7a-a0df-35efd035fafc" />
+
+Väärä salasana: `gdb --args crackme02 123`
+
+<img width="553" height="516" alt="image" src="https://github.com/user-attachments/assets/f538cf4e-d797-4e7a-a733-037fded71676" />
+
+Väärä salasana, oikea pituus ja skipataan check_pw loppuun: `gdb --args crackme02 123456`
+
+<img width="565" height="485" alt="image" src="https://github.com/user-attachments/assets/d966b97d-c529-4968-ab58-cd5fc5573df1" />
+
+Näiden perusteella ohjelman palautusarvoksi (rax) saadaan 0, kun annetaan 6 merkkiä pitkä parametri ja skipataan check_pw loppuun riville check_pw+46.
+
+
+
+
 ## Lähteet
 Wikipedia: Segmentation fault: https://en.wikipedia.org/wiki/Segmentation_fault
 
