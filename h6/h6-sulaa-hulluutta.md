@@ -43,4 +43,28 @@ Binwalkin mukaan kuva sisältää jpg:n lisäksi tiff ja zip dataa. Purin kuvati
 
 <img width="935" height="306" alt="image" src="https://github.com/user-attachments/assets/5fae0536-99e3-492f-8f98-da8f32ac39ad" />
 
+Binwalk loi hakemiston _h1.jpg.extracted, joka sisälsi tiedoston 494F5.zip.
 
+Yritin purkaa sitä, mutta unzip ei löytänyt zip-tiedoston loppua.
+
+<img width="466" height="120" alt="image" src="https://github.com/user-attachments/assets/0d9bb858-b6b4-491c-8ac2-877f58c16a50" />
+
+Ajoin tiedoston filella, joka tunnisti sen Microsoft Word tiedostoksi.
+
+<img width="323" height="46" alt="image" src="https://github.com/user-attachments/assets/9c912cf9-bc42-4240-b5a3-abd470e53bc4" />
+
+Asensin libreoffice-writerin word dokumentin avaamiseksi, `sudo apt-get install libreoffice-writer`
+
+Samalla kuin libreoffice writer asentui, sain purettua tiedoston 7z:n avulla komennolla `7z x 494F5.zip`. Purettuna tiedosto näytti sisältävän word dokumentin tietoja.
+
+<img width="367" height="272" alt="image" src="https://github.com/user-attachments/assets/703c5efc-b972-495b-ab84-eb69bfaa2ee6" />
+
+Libreoffice oli asentunut, joten avasin .zip tiedoston sillä, `libreoffice 494F5.zip`.
+
+<img width="271" height="128" alt="image" src="https://github.com/user-attachments/assets/b33f0ea9-0770-4831-bfd5-0cd192a1fe3a" />
+
+Valitsin "Yes" ja dokumentti avautui. Tiedoston sisältämä dokumentti sisälsi tulevaisuuden ennustuksia eri aloilta.
+
+<img width="488" height="468" alt="image" src="https://github.com/user-attachments/assets/20335020-fbdc-408d-b24e-700029a9b7c0" />
+
+<img width="479" height="316" alt="image" src="https://github.com/user-attachments/assets/43aebac6-0710-4613-be8e-6f59fcee8989" />
