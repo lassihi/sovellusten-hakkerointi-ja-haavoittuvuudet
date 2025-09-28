@@ -68,3 +68,35 @@ Valitsin "Yes" ja dokumentti avautui. Tiedoston sisältämä dokumentti sisälsi
 <img width="488" height="468" alt="image" src="https://github.com/user-attachments/assets/20335020-fbdc-408d-b24e-700029a9b7c0" />
 
 <img width="479" height="316" alt="image" src="https://github.com/user-attachments/assets/43aebac6-0710-4613-be8e-6f59fcee8989" />
+
+## Lab2
+
+Valitsin Android-FOSS listalta (https://github.com/offa/android-foss) sovellukseksi "Hacker's keyboard" (https://github.com/klausw/hackerskeyboard). APK:n (Android Package) latasin F-Droidin sivuilta, `wget https://f-droid.org/packages/org.pocketworkstation.pckeyboard/`.
+
+<img width="623" height="90" alt="image" src="https://github.com/user-attachments/assets/d58142da-4ff7-49c9-9455-7ae8043b0776" />
+
+File tunnisti tiedoston olevan apk ja binwalk tiedoston sisältävän zip-dataa.
+
+<img width="1892" height="740" alt="image" src="https://github.com/user-attachments/assets/af21c715-5bda-4d62-8b49-76ebbb264b25" />
+
+`strings -n 10 org.pocketworkstation.pckeyboard_1041001.apk` löysi hyvin paljon kovakoodattua tekstiä tiedostosta, pääasiassa tiedostopolkuja ja käyttöliittymän tekstejä. Osa merkkijonoista oli suomeksi.
+
+<img width="898" height="841" alt="image" src="https://github.com/user-attachments/assets/4ed0cb80-0f98-490c-86d4-ada8e888120c" />
+
+Purin apk:n binwalkilla, `binwalk -eM org.pocketworkstation.pckeyboard_1041001.apk`. Apk:n sisältä läytyi tiedostot AndroidManifest.XML, classes.dex, resources.arcs ja hakemistot lib, META-INF ja res.
+
+<img width="1374" height="99" alt="image" src="https://github.com/user-attachments/assets/a8cebc3d-8f4d-4cc4-81a2-4550bf99b580" />
+
+Heti mielenkiintoni herätti hakemiston META-INF sisältö, joka sisälsi .RSA-päättyisen tiedoston. 
+
+<img width="1501" height="251" alt="image" src="https://github.com/user-attachments/assets/72f954f1-e5b0-41a9-8b73-2f0df2e2cbdd" />
+
+Nopealla Googlauksellä kävi ilmi, että .RSA-tiedosto sisältää varmenteen (kehittäjän julkinen avain ja sertifikaatti) ja allekirjoituksen (kehittäjän yksityisellä avaimella allekijoitettu apk) (https://stackoverflow.com/questions/39305775/what-are-the-purposes-of-files-in-meta-inf-folder-of-an-apk-file#39305776).Hakemiston .SF ja .MF päättyiset tiedostot sisältävät tiivisteitä apk:n sisältämistä tiedostoista. Näiden avulla voidaan varmistaa apk:n eheys.
+
+.RSA tiedoston sisällön saa auki keytool työkalulla.
+
+<img width="1499" height="427" alt="image" src="https://github.com/user-attachments/assets/fc5cec53-ceb3-4b31-bee8-648a590c57b6" />
+
+
+Toinen mielenkiintoinen apk:n hakemisto oli lib, josta löytyy ohjelman käyttämiä kirjastoja eri arkkitehtuureille.
+
