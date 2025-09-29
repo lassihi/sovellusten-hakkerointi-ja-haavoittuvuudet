@@ -67,8 +67,6 @@ Valitsin "Yes" ja dokumentti avautui. Tiedoston sisältämä dokumentti sisälsi
 
 <img width="488" height="468" alt="image" src="https://github.com/user-attachments/assets/20335020-fbdc-408d-b24e-700029a9b7c0" />
 
-<img width="479" height="316" alt="image" src="https://github.com/user-attachments/assets/43aebac6-0710-4613-be8e-6f59fcee8989" />
-
 ## Lab2
 
 Valitsin Android-FOSS listalta (https://github.com/offa/android-foss) sovellukseksi "Hacker's keyboard" (https://github.com/klausw/hackerskeyboard). APK:n (Android Package) latasin F-Droidin sivuilta, `wget https://f-droid.org/packages/org.pocketworkstation.pckeyboard/`.
@@ -91,12 +89,48 @@ Heti mielenkiintoni herätti hakemiston META-INF sisältö, joka sisälsi .RSA-p
 
 <img width="1501" height="251" alt="image" src="https://github.com/user-attachments/assets/72f954f1-e5b0-41a9-8b73-2f0df2e2cbdd" />
 
-Nopealla Googlauksellä kävi ilmi, että .RSA-tiedosto sisältää varmenteen (kehittäjän julkinen avain ja sertifikaatti) ja allekirjoituksen (kehittäjän yksityisellä avaimella allekijoitettu apk) (https://stackoverflow.com/questions/39305775/what-are-the-purposes-of-files-in-meta-inf-folder-of-an-apk-file#39305776).Hakemiston .SF ja .MF päättyiset tiedostot sisältävät tiivisteitä apk:n sisältämistä tiedostoista. Näiden avulla voidaan varmistaa apk:n eheys.
+Nopealla Googlauksellä kävi ilmi, että .RSA-tiedosto sisältää varmenteen ja allekirjoituksen (kehittäjän yksityisellä avaimella allekijoitettu apk) (https://stackoverflow.com/questions/39305775/what-are-the-purposes-of-files-in-meta-inf-folder-of-an-apk-file#39305776). Hakemiston .SF ja .MF päättyiset tiedostot sisältävät tiivisteitä apk:n sisältämistä tiedostoista. Näiden avulla voidaan varmistaa apk:n eheys.
 
 .RSA tiedoston sisällön saa auki keytool työkalulla.
 
 <img width="1499" height="427" alt="image" src="https://github.com/user-attachments/assets/fc5cec53-ceb3-4b31-bee8-648a590c57b6" />
 
+Wikipedian mukaan classes.dex sisältää ohjelman ajettavan koodin dex formaatissa (https://en.wikipedia.org/wiki/Apk_(file_format)). Dex tiedoston purkamiseen löytyy useampia työkaluja ja päätin käyttää jadxia. 
 
-Toinen mielenkiintoinen apk:n hakemisto oli lib, josta löytyy ohjelman käyttämiä kirjastoja eri arkkitehtuureille.
+Jadx-työkalun, asentaminen kalille onnisttuu `sudo apt-get install jadx`. Avasin apk:n jadxilla `jadx-gui org.pocketworkstation.pckeyboard_1041001.apk`.
 
+<img width="1911" height="781" alt="image" src="https://github.com/user-attachments/assets/40bf19f4-305a-4dd5-bf92-c4250ddd5b88" />
+
+Jadxista löytyi ohjelman, kuin myös käytettyjen android kirjastojen lähdekoodit. Tämän lisäksi jadx näytti puretun apk tiedoston sisällön, sekä tarkasti sen allekirjoituksen. Ohjelma koostui noin 50 luokasta, joten sen toimintaa en lähtenyt syvemmin tarkastelemaan. 
+
+<img width="427" height="857" alt="image" src="https://github.com/user-attachments/assets/5d723925-4c76-413f-b44f-21968ca8d50f" />
+
+Luokkien nimien perusteella lähdekoodi vastasi projektin GitHubista löytyvää Java-koodia.
+
+Vaikka ohjelman toimintaa lähdekoodista on työlästä lähteä mallintamaan, niin sovelluksen metadataa sisältävä AndroidManifest.xml voi myös antaa hyödyllistä tietoa sovelluksesta.
+
+<img width="1460" height="927" alt="image" src="https://github.com/user-attachments/assets/e97280c9-e632-470a-a2b1-d5204613a25b" />
+
+AndroidManifest.xml tiedostosta käy ilmi esimerkiksi:
+* Sovelluksen tietoja
+  * Versio 1.41.1
+  * Tunniste org.pocketworkstation.pckeyboard
+* Käyttöjärjestelmävaatimuksia
+  * SDK 14 - SDK 26 = Android 4.0 (2011) - Android 7.0 (2016) https://developer.android.com/tools/releases/platforms
+* Tarvittavat oikeudet
+  * Värinä, luku- ja kirjoitusoikeus käyttäjän sanakirjaan, BIND_INPUT_METHOD
+* Käytetyt palvelut
+  * Mikrofoni, faketouch ja kosketusnäyttö
+ 
+## Lähteet
+Offa: android-foss: https://github.com/offa/android-foss
+
+Weidner: hackerskeyboard: https://github.com/klausw/hackerskeyboard
+
+F-Droid: Hacker's Keyboard: https://f-droid.org/packages/org.pocketworkstation.pckeyboard/
+
+Sandhu 2016: https://stackoverflow.com/questions/39305775/what-are-the-purposes-of-files-in-meta-inf-folder-of-an-apk-file#39305776
+
+Wikipedia: apk (file format): https://en.wikipedia.org/wiki/Apk_(file_format)
+
+Google: SDK Platform release notes: https://developer.android.com/tools/releases/platforms
