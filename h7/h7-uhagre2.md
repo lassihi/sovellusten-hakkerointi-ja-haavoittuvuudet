@@ -15,7 +15,7 @@ Käyttöjärjestelmä: Debian 12, Kali Linux (VMWare virtuaalikone)
       * Viestien salaamista kutsutaan **kryptografiaksi**. Salaamisen lisäksi kryptografiaa hyödynnetään usein myös todennuksessa, sekä eheyden ja kiistämättömyyden varmistamisessa. **Kryptoanalyysi** on salakirjoituksen purkamiseen keskittynyt tieteenala. **Kryptologia** on matematiikan haara, joka käsittää kryptografian ja kryptologian.
       * Kryptografiset algoritmit (salaukset/salausalgoritmit) ovat matemaattisia funktioita, joita käytetää salaamiseen ja salauksen purkamiseen.
       * Toimintaperiaatteiltaan julkisten salausalgoritmien turvallisuus perustuu täysin avaimeen (yhteen tai useampaan). Symmetrisessä algoritmissa sama avain salaa ja purkaa viestin, kun taas epäsymmetrisessä algoritmissa viesti salataan eri avaimella (julkinen avain), kuin se puretaan (yksityinen avain). 
-      * One-time pad on
     * 1.4 Simple XOR
+        * Exclusive OR on yksi biteille tehtävistä perusoperaatioista.
     * 1.7 Large Numbers
 * Karvinen 2024: Python Basics for Hackers
