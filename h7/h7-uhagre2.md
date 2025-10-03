@@ -16,6 +16,8 @@ Käyttöjärjestelmä: Debian 12, Kali Linux (VMWare virtuaalikone)
       * Kryptografiset algoritmit (salaukset/salausalgoritmit) ovat matemaattisia funktioita, joita käytetää salaamiseen ja salauksen purkamiseen.
       * Toimintaperiaatteiltaan julkisten salausalgoritmien turvallisuus perustuu täysin avaimeen (yhteen tai useampaan). Symmetrisessä algoritmissa sama avain salaa ja purkaa viestin, kun taas epäsymmetrisessä algoritmissa viesti salataan eri avaimella (julkinen avain), kuin se puretaan (yksityinen avain). 
     * 1.4 Simple XOR
-        * Exclusive OR on yksi biteille tehtävistä perusoperaatioista.
+        * Exclusive OR on looginen operaatio. XOR saa arvon, jos vain toinen sille annetuista arvoista on tosi, muuten saadaan arvoksi epätosi.
+        * XOR operaatiota on käytetty monissa kaupallisissa ohjelmissa salaukseen.
+        * Tosiasiassa XOR salauksen purku on triviaalia.
     * 1.7 Large Numbers
 * Karvinen 2024: Python Basics for Hackers
