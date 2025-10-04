@@ -27,3 +27,7 @@ Käyttöjärjestelmä: Debian 12, Kali Linux (VMWare virtuaalikone)
             * Atomien määrä planeetassa 2^170.
             * Universumin tilavuus 2^280
 * Karvinen 2024: Python Basics for Hackers
+   * Pythonissa ydintoiminta ja pienet muutokset kannattaa testata interaktiivisella tulkilla.
+   * Micro-editorilla F5 mahdollistaa ohjelman ajamisen.
+   * `ord()`, `hex()` ja `bin()` -funktiot auttavat muunnoksissa.
+   * Hyödyllisiä kirjastoja ovat requests, binascii ja base64.
