@@ -58,5 +58,16 @@ Tallensin tehtävän tiedoston samaan hakemistoon, kuin mihin loin ohjelman.
 
 <img width="937" height="92" alt="image" src="https://github.com/user-attachments/assets/0f28231c-a7aa-4617-bac1-899bbd8062d8" />
 
-Cryptopals challenge 3:n muokattu koodi.
-<img width="1017" height="857" alt="image" src="https://github.com/user-attachments/assets/69d36914-294c-431f-9ff6-fbf97fd14b5a" />
+Cryptopals challenge 3:n muokattu koodi. Muokkauksiin kuuluu pääasiassa koko utf-8 merkkiavaruuden käyttö avaimena, vain parhaan tuloksen palauttaminen ja "ei-perinteisistä" merkeistä rankaiseminen tuloksessa.
+<img width="1017" height="847" alt="image" src="https://github.com/user-attachments/assets/3b783a94-afc1-40ff-8b05-c6cb059b7d4e" />
+
+Uusi challenge 4 ohjelma, joka ottaa sisään tiedoston sisällön, syöttää sen jokaisen rivin challenge 3 ohjelmalle ja palauttaa vastaukset pistejärjestyksessä.
+<img width="1017" height="385" alt="image" src="https://github.com/user-attachments/assets/61ef59d3-2e8e-4e7b-9cbf-5ec13c6d8ce0" />
+
+Challenge 4 ohjelman antamat top 10 tulokset.
+<img width="1017" height="606" alt="image" src="https://github.com/user-attachments/assets/2050f5c8-113b-4f11-aaa0-a420f086fa17" />
+
+Tuloksista huomataan, että rivi 7b5a4215415d544115415d5015455447414c155c46155f4058455c5b523f sisältää viestin "Now that the party is jumping\n". Viestille on suoritettu XOR operaatio merkin "5" kanssa.
+
+Tulos ei ollut ensimmäisenä, sillä on hyvin mahdollista, että satunnaisesti luotu merkkijono voi frekvenssianalyysin jälkeen täsmätä paremmin normaalia englannin kielen frekvenssiä kuin oikea teksti, etenkin kun analyysissä huomioidaan vain aakkoset (kuten olen itse tehnyt).
+
