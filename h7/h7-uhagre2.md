@@ -88,3 +88,8 @@ Latasin tiedoston.
 
 <img width="1083" height="91" alt="image" src="https://github.com/user-attachments/assets/4547546f-abb6-44a5-b40d-df92dca0a7f2" />
 
+Ehdin ainoastaan kirjoittamaan hamming_distance funktion ennen kuin piti jatkaa muita hommia.
+<img width="1083" height="152" alt="image" src="https://github.com/user-attachments/assets/012c2d8b-1f78-4dbd-b96d-47eb8c11e2da" />
+
+<img width="1083" height="105" alt="image" src="https://github.com/user-attachments/assets/e1888a05-fa5f-4798-99ee-3103454ed4fe" />
+
