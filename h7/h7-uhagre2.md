@@ -18,6 +18,12 @@ Käyttöjärjestelmä: Debian 12, Kali Linux (VMWare virtuaalikone)
     * 1.4 Simple XOR
         * Exclusive OR on looginen operaatio. XOR saa arvon, jos vain toinen sille annetuista arvoista on tosi, muuten saadaan arvoksi epätosi.
         * XOR operaatiota on käytetty monissa kaupallisissa ohjelmissa salaukseen.
-        * Tosiasiassa XOR salauksen purku on triviaalia.
+        * Tosiasiassa yksinkertaisen XOR salauksen purku on triviaalia.
     * 1.7 Large Numbers
+        * Suurien lukujen havainnollistamiseksi annettu vertauskuvia.
+            * Todennäiköisyys kuolla autokolarissa (Yhdysvalloissa elinaikana) 2^7.
+            * Aikaa seuraavaan jääkauteen 2^14 vuotta.
+            * Todennäköisyys kuolla salamaniskuun päivittäin 2^33.
+            * Atomien määrä planeetassa 2^170.
+            * Universumin tilavuus 2^280
 * Karvinen 2024: Python Basics for Hackers
