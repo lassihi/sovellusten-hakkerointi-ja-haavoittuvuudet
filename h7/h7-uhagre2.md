@@ -58,3 +58,5 @@ Tallensin tehtävän tiedoston samaan hakemistoon, kuin mihin loin ohjelman.
 
 <img width="937" height="92" alt="image" src="https://github.com/user-attachments/assets/0f28231c-a7aa-4617-bac1-899bbd8062d8" />
 
+Cryptopals challenge 3:n muokattu koodi.
+<img width="1017" height="857" alt="image" src="https://github.com/user-attachments/assets/69d36914-294c-431f-9ff6-fbf97fd14b5a" />
