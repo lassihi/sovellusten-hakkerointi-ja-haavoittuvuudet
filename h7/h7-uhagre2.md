@@ -31,3 +31,30 @@ Käyttöjärjestelmä: Debian 12, Kali Linux (VMWare virtuaalikone)
    * Micro-editorilla F5 mahdollistaa ohjelman ajamisen.
    * `ord()`, `hex()` ja `bin()` -funktiot auttavat muunnoksissa.
    * Hyödyllisiä kirjastoja ovat requests, binascii ja base64.
+
+## Ratkaise CryptoPals Set 1 -haasteet. Tehtävät saa ratkaista millä vain ohjelmointikielellä ja käyttää mitä tahansa tekstieditoria tai IDE:ä. Tehtäviä ei kannata ratkaista tekoälyllä, koska se vain kopioi malliratkaisun suoraan koulutusmateriaalistaan.
+
+### a) 1. Convert hex to base64.
+
+Tehty [h3 lisätehtävänä](https://github.com/lassihi/sovellusten-hakkerointi-ja-haavoittuvuudet/blob/main/h3/h3-no-strings-attached.md#d-vapaaehtoinen-bonus-cryptopals-crypto-challenge-set-1-tätä-voi-tehdä-useamman-viikon-bonuksena-jos-saat-ratkaistua-kohdat-1--4-detect-single-character-xor-olet-jo-astunut-salakirjoituksen-maailmaan).
+
+### b) 2. Fixed XOR.
+
+Tehty [h3 lisätehtävänä](https://github.com/lassihi/sovellusten-hakkerointi-ja-haavoittuvuudet/blob/main/h3/h3-no-strings-attached.md#d-vapaaehtoinen-bonus-cryptopals-crypto-challenge-set-1-tätä-voi-tehdä-useamman-viikon-bonuksena-jos-saat-ratkaistua-kohdat-1--4-detect-single-character-xor-olet-jo-astunut-salakirjoituksen-maailmaan).
+
+### c) 3. Single-byte XOR cipher.
+
+Tehty [h3 lisätehtävänä](https://github.com/lassihi/sovellusten-hakkerointi-ja-haavoittuvuudet/blob/main/h3/h3-no-strings-attached.md#d-vapaaehtoinen-bonus-cryptopals-crypto-challenge-set-1-tätä-voi-tehdä-useamman-viikon-bonuksena-jos-saat-ratkaistua-kohdat-1--4-detect-single-character-xor-olet-jo-astunut-salakirjoituksen-maailmaan).
+
+## d) 4. Detect single-character XOR.
+
+<img width="904" height="323" alt="image" src="https://github.com/user-attachments/assets/4ff0185c-d0de-476f-a3f6-ab63c4b7819d" />
+
+Tehtävänä harjoituksessa on löytää liitteenä olevasta tiedostosta 60 merkkiä pitkä teksti, joka vasten on tehty yhtä merkkiä käyttäen XOR operaatio.
+
+Päätin luoda 3. cryptopals harjoituksen koodia käyttäen uuden ohjelman, joka tekee tiedoston jokaiseen riviin XOR operaation jokaista merkkiä kohden ja palauttaa niistä parhaiten englannin kielen kirjaintiheyttä vastaavan rivin.
+
+Tallensin tehtävän tiedoston samaan hakemistoon, kuin mihin loin ohjelman.
+
+<img width="937" height="92" alt="image" src="https://github.com/user-attachments/assets/0f28231c-a7aa-4617-bac1-899bbd8062d8" />
+
