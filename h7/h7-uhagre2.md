@@ -93,3 +93,9 @@ Ehdin ainoastaan kirjoittamaan hamming_distance funktion ennen kuin piti jatkaa 
 
 <img width="1083" height="105" alt="image" src="https://github.com/user-attachments/assets/e1888a05-fa5f-4798-99ee-3103454ed4fe" />
 
+## Lähteet
+Schneier 2015: Applied Cryptography, 20ed: Chapter 1: Foundations: https://learning.oreilly.com/library/view/applied-cryptography-protocols/9781119096726/08_chap01.html#chap01-sec001
+
+Karvinen 2024: Python basics for hackers: https://terokarvinen.com/python-for-hackers/
+
+Cryptopals: Crypto Challenge Set 1: https://cryptopals.com/sets/1
