@@ -159,7 +159,7 @@ Tuntien pähkäilyn jälkeen tuntuu siltä, että tähän olisi varmasti ollut h
 
 ## Challenge 4:
 
-Jatkuu myöhemmin...
+[Jatkuu h7](https://github.com/lassihi/sovellusten-hakkerointi-ja-haavoittuvuudet/blob/main/h7/h7-uhagre2.md)
 
 ## Lähteet:
 
